@@ -23,4 +23,8 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 $callableResolve = $app->getCallableResolver();
 
-
+// Register middleware
+$middlewares = require __DIR__ . '/../app/middleware.php';
+foreach ($middlewares as $middleware) {
+    $app->add($middleware);
+}
