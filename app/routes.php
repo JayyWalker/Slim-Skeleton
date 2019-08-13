@@ -6,10 +6,8 @@ use App\Application\Actions\User\ViewUserAction;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
-return function (App $app) {
-    $container = $app->getContainer();
-
-    $app->group('/users', function (Group $group) use ($container) {
+return function (App $router) {
+    $router->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
     });
