@@ -1,8 +1,11 @@
 <?php
 
+use DI\ContainerBuilder;
+use Slim\Factory\AppFactory;
+
 require __DIR__ . '/../vendor/autoload.php';
 
-$containerBuilder = new \DI\ContainerBuilder;
+$containerBuilder = new ContainerBuilder;
 
 // This should be enabled in production
 if (false) {
@@ -16,8 +19,8 @@ $containerBuilder->addDefinitions($dependencies);
 // Build Container
 $container = $containerBuilder->build();
 
-\Slim\Factory\AppFactory::setContainer($container);
-$app = \Slim\Factory\AppFactory::create();
+AppFactory::setContainer($container);
+$app = AppFactory::create();
 $callableResolve = $app->getCallableResolver();
 
 
