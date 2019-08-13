@@ -16,6 +16,10 @@ if (false) {
 $dependencies = require __DIR__ . '/dependencies.php';
 $containerBuilder->addDefinitions($dependencies);
 
+// Set up settings
+$settings = require __DIR__ . '/../app/settings.php';
+$settings($containerBuilder);
+
 // Build Container
 $container = $containerBuilder->build();
 
