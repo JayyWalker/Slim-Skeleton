@@ -21,19 +21,21 @@ $dependencies = require __DIR__ . '/dependencies.php';
 $containerBuilder->addDefinitions($dependencies);
 
 // Set up settings
-$settings = require __DIR__ . '/../app/settings.php';
-$settings($containerBuilder);
+$configLoader = require __DIR__ . '/../config/config-loader.php';
+$config = $configLoader();
+
+$containerBuilder->addDefinitions($config);
 
 // Build Container
 $container = $containerBuilder->build();
 
 AppFactory::setContainer($container);
 $app = AppFactory::create();
-$callableResolve = $app->getCallableResolver();
+$callableResolver = $app->getCallableResolver();
 
 // Register middleware
-$middlewares = require __DIR__ . '/../app/middleware.php';
-foreach ($middlewares as $middleware) {
+$middlewareArray = require __DIR__ . '/../app/middleware.php';
+foreach ($middlewareArray as $middleware) {
     $app->add($middleware);
 }
 

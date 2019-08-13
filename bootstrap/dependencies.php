@@ -1,28 +1,24 @@
 <?php
 declare(strict_types=1);
 
-use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
-return function (ContainerBuilder $containerBuilder) {
-    $containerBuilder->addDefinitions([
-        LoggerInterface::class => function (ContainerInterface $c) {
-            $settings = $c->get('settings');
+return [
+    LoggerInterface::class => function (ContainerInterface $c) {
+        $config = $c->get('config')['logger'];
 
-            $loggerSettings = $settings['logger'];
-            $logger = new Logger($loggerSettings['name']);
+        $logger = new Logger($config['name']);
 
-            $processor = new UidProcessor();
-            $logger->pushProcessor($processor);
+        $processor = new UidProcessor();
+        $logger->pushProcessor($processor);
 
-            $handler = new StreamHandler($loggerSettings['path'], $loggerSettings['level']);
-            $logger->pushHandler($handler);
+        $handler = new StreamHandler($config['path'], $config['level']);
+        $logger->pushHandler($handler);
 
-            return $logger;
-        },
-    ]);
-};
+        return $logger;
+    },
+];
