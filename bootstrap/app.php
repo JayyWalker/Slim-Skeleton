@@ -28,3 +28,7 @@ $middlewares = require __DIR__ . '/../app/middleware.php';
 foreach ($middlewares as $middleware) {
     $app->add($middleware);
 }
+
+$routes = require __DIR__ . '/../app/routes.php';
+$routes($app);
+
