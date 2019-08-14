@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+use App\Domain\User\UserRepository;
+use App\Infrastructure\Persistence\User\InMemoryUserRepository;
+use function DI\autowire;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
@@ -21,4 +24,7 @@ return [
 
         return $logger;
     },
+
+    // Repositories
+    UserRepository::class => autowire(InMemoryUserRepository::class),
 ];
