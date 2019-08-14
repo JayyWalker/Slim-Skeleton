@@ -1,6 +1,7 @@
 .idea/
 /coverage/
 /vendor/
-/logs/*
-!/logs/README.md
-/var/cache/*
+/storage/cache/*
+!/storage/cache/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep

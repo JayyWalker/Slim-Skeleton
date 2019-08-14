@@ -13,7 +13,7 @@ $containerBuilder = new ContainerBuilder;
 
 // This should be enabled in production
 if (false) {
-    $containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
+    $containerBuilder->enableCompilation(__DIR__ . '/../storage/cache');
 }
 
 // Setup dependencies
