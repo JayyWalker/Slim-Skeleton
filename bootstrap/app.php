@@ -9,6 +9,10 @@ use Slim\Factory\ServerRequestCreatorFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// Load env variables
+$dotenv = Dotenv\Dotenv::create(__DIR__ . '/../');
+$dotenv->load();
+
 $containerBuilder = new ContainerBuilder;
 
 // This should be enabled in production
