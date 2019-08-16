@@ -8,7 +8,7 @@ use JsonSerializable;
 class ActionPayload implements JsonSerializable
 {
     /**
-     * @var int
+     * @var integer
      */
     private $statusCode;
 
